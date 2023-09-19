@@ -1,0 +1,65 @@
+﻿@model IEnumerable<CalisanTakip.Models.WorkHour>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Çaşılma Saatleri</h1>
+
+<p>
+    <a asp-action="Create">Yeni Kayıt Oluştur</a>
+</p>
+<table class="table table-borderless table-striped" id="tbllist">
+    <thead class="bg-light text-black">
+        <tr>
+            <th>
+                Tarih
+            </th>
+            <th>
+                Başlangıç Zamanı
+            </th>
+            <th>
+                Çıkış Zamanı
+            </th>
+            <th>
+                Çalışan
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EntryTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExitTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.Id)
+            </td>
+            <td>
+                    <a class="btn btn-outline-success" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a class="btn btn-outline-success" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
+<script type="text/javascript">
+    var jss = jQuery.noConflict(true);
+    jss(document).ready(function () {
+        jss('#tbllist').DataTable({});
+    });
+
+</script>

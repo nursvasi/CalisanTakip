@@ -1,0 +1,70 @@
+﻿@model IEnumerable<CalisanTakip.Models.LeaveRequest>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>İşten Ayrılma</h1>
+
+<p>
+    <a asp-action="Create">Yeni Kayıt Oluştur</a>
+</p>
+<table class="table table-borderless table-striped" id="tbllist">
+    <thead class="bg-light text-black">
+        <tr>
+            <th>
+                İşe Başlangıç Tarihi
+            </th>
+            <th>
+                İşten Çıkış Tarihi
+            </th>
+            <th>
+                Ayrılma Türü
+            </th>
+            <th>
+                Onay Durumu
+            </th>
+            <th>
+                Çalışanın Adı
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LeaveType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApprovalStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.FirstName)
+            </td>
+            <td>
+                    <a class="btn btn-outline-success" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a class="btn btn-outline-success" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
+<script type="text/javascript">
+    var js=jQuery.noConflict(true);
+js(document).ready(function(){
+    js('#tbllist').DataTable({ });
+});
+
+</script>

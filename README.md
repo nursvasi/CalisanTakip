@@ -1,1 +1,2 @@
-# CalisanTakip
+# Employee Tracking System
+This project, Employee Tracking System, is a web application designed to manage and track employee data effectively. Built with ASP.NET Core MVC, it provides functionalities for recording and managing employee information such as personal details, positions, and departments. The system uses Entity Framework Core for database operations and SQL Server as its database. With a user-friendly interface, the application simplifies tasks like adding, editing, and deleting employee records. It serves as an efficient solution for companies to organize and monitor their workforce data systematically.
